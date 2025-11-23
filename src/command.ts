@@ -451,7 +451,11 @@ export class Command {
       await this.prepare(options);
 
       for (const before of this.befores) {
-        await before.fn(options, ...before.args);
+        try {
+          await before.fn(options, ...before.args);
+        } catch (e: any) {
+          throw e;
+        }
       }
       return this.actionFn(...args);
     };
