@@ -332,6 +332,9 @@ export class Command {
     } catch (e: any) {
       options.configError = e;
     }
+    if (options.configError) {
+      throw options.configError;
+    }
 
     const account = getInheritedOption(options, "account");
     options.account = account;
@@ -451,11 +454,7 @@ export class Command {
       await this.prepare(options);
 
       for (const before of this.befores) {
-        try {
-          await before.fn(options, ...before.args);
-        } catch (err: any) {
-          return Promise.reject(err);
-        }
+        await before.fn(options, ...before.args);
       }
       return this.actionFn(...args);
     };
