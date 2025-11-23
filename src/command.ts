@@ -450,11 +450,13 @@ export class Command {
       const options = last(args);
       await this.prepare(options);
 
-      console.trace("Command.runner(): Before executing before hooks.");
       for (const before of this.befores) {
-        await before.fn(options, ...before.args);
+        try {
+          await before.fn(options, ...before.args);
+        } catch (err: any) {
+          return Promise.reject(err);
+        }
       }
-      console.trace("Command.runner(): After executing before hooks.");
       return this.actionFn(...args);
     };
   }
