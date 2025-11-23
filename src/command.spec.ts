@@ -43,7 +43,10 @@ describe("Command", () => {
         .stub(rc, "loadRC")
         .returns(new rc.RC(undefined, { projects: { default: "default-project" } }));
       detectProjectRootStub = sinon.stub(detectProjectRoot, "detectProjectRoot").returns(undefined);
-      configstoreGetStub = sinon.stub(configstore, "get").withArgs("activeProjects").returns(undefined);
+      configstoreGetStub = sinon
+        .stub(configstore, "get")
+        .withArgs("activeProjects")
+        .returns(undefined);
     });
 
     afterEach(() => {
