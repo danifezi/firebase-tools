@@ -3,6 +3,7 @@ import * as sinon from "sinon";
 import * as rc from "./rc";
 import * as detectProjectRoot from "./detectProjectRoot";
 import * as nock from "nock";
+import { configstore } from "./configstore";
 
 import { Command, validateProjectId } from "./command";
 import { FirebaseError } from "./error";
@@ -36,16 +37,19 @@ describe("Command", () => {
   describe("runner", () => {
     let rcStub: sinon.SinonStub;
     let detectProjectRootStub: sinon.SinonStub;
+    let configstoreGetStub: sinon.SinonStub;
     beforeEach(() => {
       rcStub = sinon
         .stub(rc, "loadRC")
         .returns(new rc.RC(undefined, { projects: { default: "default-project" } }));
       detectProjectRootStub = sinon.stub(detectProjectRoot, "detectProjectRoot").returns(undefined);
+      configstoreGetStub = sinon.stub(configstore, "get").withArgs("activeProjects").returns(undefined);
     });
 
     afterEach(() => {
       rcStub.restore();
       detectProjectRootStub.restore();
+      configstoreGetStub.restore();
       nock.cleanAll();
     });
 
