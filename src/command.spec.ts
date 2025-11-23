@@ -1,6 +1,7 @@
 import { expect } from "chai";
 import * as sinon from "sinon";
 import * as rc from "./rc";
+import * as detectProjectRoot from "./detectProjectRoot";
 import * as nock from "nock";
 
 import { Command, validateProjectId } from "./command";
@@ -34,14 +35,17 @@ describe("Command", () => {
 
   describe("runner", () => {
     let rcStub: sinon.SinonStub;
+    let detectProjectRootStub: sinon.SinonStub;
     beforeEach(() => {
       rcStub = sinon
         .stub(rc, "loadRC")
         .returns(new rc.RC(undefined, { projects: { default: "default-project" } }));
+      detectProjectRootStub = sinon.stub(detectProjectRoot, "detectProjectRoot").returns(undefined);
     });
 
     afterEach(() => {
       rcStub.restore();
+      detectProjectRootStub.restore();
       nock.cleanAll();
     });
 
