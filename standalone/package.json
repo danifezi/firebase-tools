@@ -11,6 +11,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@dataconnect/generated": "file:src/dataconnect-generated",
     "chalk": "^2.4.2",
     "npm": "^8.19.0",
     "shelljs": "^0.8.3",
