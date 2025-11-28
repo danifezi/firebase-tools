@@ -16,6 +16,7 @@
     "@types/node": "^24.9.0"
   },
   "dependencies": {
+    "@dataconnect/generated": "file:src/dataconnect-generated",
     "mocha": "^11.7.1",
     "node-pty": "^1.0.0",
     "strip-ansi": "^7.1.0",
