@@ -11,6 +11,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
+    "@dataconnect/generated": "file:src/dataconnect-generated",
     "shelljs": "^0.8.5",
     "yargs": "^13.3.0"
   }

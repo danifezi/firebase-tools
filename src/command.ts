@@ -332,6 +332,9 @@ export class Command {
     } catch (e: any) {
       options.configError = e;
     }
+    if (options.configError) {
+      throw options.configError;
+    }
 
     const account = getInheritedOption(options, "account");
     options.account = account;
