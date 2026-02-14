@@ -1,0 +1,6 @@
+extend type Comment {
+  """
+  ✨ Implicit foreign key field based on `Comment`.`post`. It must match the value of `Post`.`id`. See `@ref` for how to customize it.
+  """
+  postId: String! @fdc_generated(from: "Comment.post", purpose: IMPLICIT_REF_FIELD)
+}

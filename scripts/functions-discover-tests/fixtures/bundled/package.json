@@ -1,7 +1,0 @@
-{
-  "name": "dist",
-  "version": "0.0.1",
-  "dependencies": {
-    "firebase-functions": "^6.4.0"
-  }
-}
